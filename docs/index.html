@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Van Season</title>
+    <link rel="icon" href="data:," />
+    <script src="./coi-serviceworker.min.js"></script>
+    <script type="module" crossorigin src="./assets/index-xgvqhLaC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-QAfnVUnl.css">
+  </head>
+  <body>
+    <div id="app">
+      <section class="screen gate" data-screen="gate">
+        <div class="gate-card">
+          <svg class="mark" data-mark="vsa" viewBox="0 0 72 72" aria-label="Van Soccer Association">
+            <rect width="72" height="72" fill="#163528" />
+            <circle cx="36" cy="36" r="22" fill="none" stroke="#e8b84a" stroke-width="2" />
+            <path d="M18 24 L36 54 L54 24" fill="none" stroke="#f6f1e7" stroke-width="4" />
+          </svg>
+          <h1 class="gate-title" data-title="product">Van Season</h1>
+          <p class="gate-kicker">Van Soccer Association</p>
+          <form data-form="gate" autocomplete="off">
+            <input
+              data-field="password"
+              type="password"
+              name="password"
+              placeholder="Association password"
+              aria-label="Association password"
+            />
+          </form>
+          <p class="gate-error" data-error="password"></p>
+          <p class="gate-hint" data-hint="audience" hidden>
+            This page is for association commissioners. If you are a parent or a referee, wait for the
+            published schedule from your commissioner.
+          </p>
+        </div>
+      </section>
+
+      <section class="screen bench" data-screen="workbench" hidden>
+        <header class="top">
+          <div>
+            <h1 data-header="product">Van Season — Fall 2026</h1>
+            <p class="note" data-note="browser-only">everything stays in this browser until you save a file</p>
+            <p class="note" data-published-line>Published: none yet</p>
+          </div>
+          <div class="top-actions">
+            <input data-field="search" class="search" type="search" placeholder="Search the workbench" />
+            <button type="button" class="quiet" data-action="download-workbook" hidden>Download workbook</button>
+            <button type="button" class="quiet" data-action="save-season" hidden>Save season file</button>
+            <button type="button" class="quiet" data-action="calculate" hidden>Calculate game schedule</button>
+          </div>
+        </header>
+
+        <div class="banner" data-banner="empty">
+          Nothing is stored on a server. Download the sample, or open a season file you saved.
+        </div>
+        <div class="banner rust" data-banner="search-empty" hidden></div>
+        <div class="progress" data-progress="import" hidden></div>
+        <div class="refusal" data-refusal="import" hidden>
+          <h2 data-refusal-title>This is not the Van Season workbook.</h2>
+          <p data-refusal-body></p>
+          <button type="button" class="quiet" data-action="dismiss-refusal" style="color: var(--ink); border-color: var(--hair); background: var(--card)">
+            Dismiss
+          </button>
+        </div>
+
+        <div class="doors" data-panel="doors">
+          <button type="button" class="door" data-door="download-sample">
+            <strong>Download the sample workbook</strong>
+            <span>A color-coded Excel file with dummy Van data. Fill it in the spreadsheet you already know.</span>
+          </button>
+          <button type="button" class="door" data-door="download-scratcher">
+            <strong>Download the head-scratcher</strong>
+            <span>300+ kids, 8 refs, 6 small pitches, one 10U field, three away associations. A real packing puzzle.</span>
+          </button>
+          <label class="door" data-door="drop-workbook">
+            <strong>Drop your workbook here</strong>
+            <span>The official colored sheets. The page is the inspector — Excel stays the editor.</span>
+            <input data-input="workbook" type="file" accept=".xlsx,.xls,.csv" />
+          </label>
+          <label class="door" data-door="open-season">
+            <strong>Open a saved season file</strong>
+            <span>A SQLite file you took home. No account. No cloud.</span>
+            <input data-input="season" type="file" accept=".sqlite,.db" />
+          </label>
+        </div>
+
+        <div class="shelf-wrap" data-panel="inspect" hidden>
+          <nav class="shelf" data-inspect-shelf>
+            <button type="button" class="chip" data-inspect="age-groups">Age groups</button>
+            <button type="button" class="chip" data-inspect="fields">Fields</button>
+            <button type="button" class="chip" data-inspect="campuses">Campuses</button>
+            <button type="button" class="chip" data-inspect="travel">Travel</button>
+            <button type="button" class="chip" data-inspect="associations">Associations</button>
+            <button type="button" class="chip" data-inspect="families">Families</button>
+            <button type="button" class="chip" data-inspect="staff">Staff</button>
+            <button type="button" class="chip" data-inspect="teams">Teams</button>
+            <button type="button" class="chip" data-inspect="season">Season</button>
+            <button type="button" class="chip" data-inspect="goals">Goals</button>
+            <button type="button" class="chip" data-inspect="schedule">Schedule</button>
+            <button type="button" class="chip" data-inspect="score">Score</button>
+            <button type="button" class="chip" data-inspect="complexity">Complexity</button>
+            <button type="button" class="chip" data-inspect="documents">Documents</button>
+          </nav>
+          <p class="caption" data-inspect-caption>Change the workbook, then upload again.</p>
+          <div class="cfg" data-config-chip hidden></div>
+          <div class="cards" data-panel="inspect-cards"></div>
+        </div>
+
+        <footer class="foot" data-footer="product">
+          A one-page tool. No server. English only. The season lives in the files you download.
+        </footer>
+      </section>
+    </div>
+
+    <div class="veil" data-veil="thinking" data-veil-engine="z3" hidden>
+      <div class="veil-inner">
+        <div class="spin" aria-hidden="true"></div>
+        <p data-veil-line="grid">placing games on the 15-minute grid…</p>
+        <p data-veil-line="people">keeping coaches and parents in one place at a time…</p>
+        <p data-veil-line="cramp" hidden></p>
+      </div>
+    </div>
+
+  </body>
+</html>
