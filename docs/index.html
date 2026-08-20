@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-B_V0EgLE.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-IWiUGlX0.css">
+    <script type="module" crossorigin src="./assets/index-BouIIMn-.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DwW8TnN3.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -83,12 +83,48 @@
           <div class="wiz-fields" data-wizard-fields hidden>
             <p class="wiz-ask" data-wizard-fields-ask>WHERE ARE THE FIELDS?</p>
             <p class="wiz-fields-copy">The roster did not name a pitch. We will not invent grass. Name the complex before we place a Saturday.</p>
+            <p class="wiz-fields-need" data-wizard-fields-need></p>
             <p class="wiz-fields-hole" data-wizard-fields-hole></p>
+            <button type="button" class="wiz-van" data-wizard-adopt-van>
+              <strong>We play at Van Complex</strong>
+              <span>445 S Oak St, Van, TX — 12U, 10U, four small 6U/8U pitches, 16U at NTSSA yards</span>
+            </button>
+            <p class="wiz-or">or name the grass yourself</p>
+            <form class="wiz-pitch-form" data-wizard-pitch-form>
+              <label>Campus
+                <input data-pitch-campus name="campus" autocomplete="off" placeholder="e.g. Van Complex" />
+              </label>
+              <label>Pitch name
+                <input data-pitch-name name="name" autocomplete="off" placeholder="e.g. Field A" />
+              </label>
+              <label>NTSSA class
+                <select data-pitch-class>
+                  <option value="small">small 25×35 (4v4)</option>
+                  <option value="medium">medium 45×65 (7v7)</option>
+                  <option value="nine">nine 55×80 (9v9)</option>
+                  <option value="full">full 70×110 (11v11)</option>
+                </select>
+              </label>
+              <label>Saturday hours
+                <input data-pitch-hours name="hours" value="Saturday 8:00–18:00" />
+              </label>
+              <button type="submit" class="wiz-add" data-wizard-add-pitch>Add this pitch</button>
+            </form>
             <ul class="wiz-fields-list" data-wizard-fields-list hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="settings">Back to clocks</button>
               <button type="button" class="wiz-continue" data-wizard-continue-fields disabled>
                 Need at least one real pitch before we continue
+              </button>
+            </div>
+          </div>
+          <div class="wiz-kids" data-wizard-kids hidden>
+            <p class="wiz-ask" data-wizard-kids-ask>Kids on each team?</p>
+            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You have to say how to proceed.</p>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="fields">Back to fields</button>
+              <button type="button" class="wiz-continue" data-wizard-kids-continue disabled>
+                Choose whether to proceed without player data
               </button>
             </div>
           </div>
