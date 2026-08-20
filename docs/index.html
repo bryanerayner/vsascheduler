@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-BM50u6a7.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DiCeFBVa.css">
+    <script type="module" crossorigin src="./assets/index-B_V0EgLE.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-IWiUGlX0.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -34,7 +34,7 @@
           <li data-wiz-step="done"><span>7</span> Schedule</li>
         </ol>
         <div class="wiz-body">
-          <p class="wiz-lead">Drop the coaching roster. We will read team names, brackets, and coaches — nothing else is invented.</p>
+          <p class="wiz-lead" data-wizard-lead>Drop the coaching roster. We will read team names, brackets, and coaches — nothing else is invented.</p>
           <div class="progress" data-wizard-progress hidden></div>
           <div class="refusal" data-wizard-refusal hidden>
             <h2 data-wizard-refusal-title>This file could not become a season.</h2>
@@ -54,9 +54,43 @@
               Drop a different workbook
               <input data-wizard-input="replace" type="file" accept=".xlsx,.xls,.csv" />
             </label>
-            <button type="button" class="wiz-continue" data-wizard-continue disabled>
-              Looks right — next we will ask where the fields are
+            <button type="button" class="wiz-continue" data-wizard-continue data-wizard-next="settings" disabled>
+              Looks right — next, the NTSSA clocks
             </button>
+          </div>
+          <div class="wiz-settings" data-wizard-settings hidden>
+            <p class="wiz-ntssa" data-wizard-clocks-source>North Texas Soccer (NTSSA) / USSF PDI clocks. Change any number — the season updates immediately. Approve when they look right.</p>
+            <div class="wiz-season" data-wizard-season data-assumed-window>
+              <label>First Saturday
+                <input type="date" data-season-field="firstIso" />
+              </label>
+              <label>Last Saturday
+                <input type="date" data-season-field="lastIso" />
+              </label>
+              <label>Rematch cap
+                <input type="number" min="1" max="8" step="1" data-season-field="rematchCap" value="2" />
+              </label>
+            </div>
+            <div class="wiz-clocks" data-wizard-clocks></div>
+            <p class="wiz-live" data-wizard-clocks-live></p>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="drop">Back to teams</button>
+              <button type="button" class="wiz-continue" data-wizard-approve-clocks>
+                These clocks look right — next: where are the fields?
+              </button>
+            </div>
+          </div>
+          <div class="wiz-fields" data-wizard-fields hidden>
+            <p class="wiz-ask" data-wizard-fields-ask>WHERE ARE THE FIELDS?</p>
+            <p class="wiz-fields-copy">The roster did not name a pitch. We will not invent grass. Name the complex before we place a Saturday.</p>
+            <p class="wiz-fields-hole" data-wizard-fields-hole></p>
+            <ul class="wiz-fields-list" data-wizard-fields-list hidden></ul>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="settings">Back to clocks</button>
+              <button type="button" class="wiz-continue" data-wizard-continue-fields disabled>
+                Need at least one real pitch before we continue
+              </button>
+            </div>
           </div>
         </div>
         <footer class="foot" data-footer="wizard">A one-page tool. No server. The season lives in the files you download.</footer>
