@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-BbsJMQ7D.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BdJ-gAjm.css">
+    <script type="module" crossorigin src="./assets/index---4hcAq7.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Bkzt92es.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -213,13 +213,24 @@
               <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
             </div>
           </div>
-          <div class="wiz-done" data-wizard-done hidden data-wizard-sheet-bracket="">
+          <div class="wiz-done" data-wizard-done hidden data-wizard-sheet-bracket="" data-wizard-editing="no" data-wizard-conflict-n="0">
             <p class="wiz-ask" data-wizard-done-ask>Schedule</p>
-            <p class="wiz-fields-copy">One sheet per league. A 6U coach should not hunt through 14U. Open the full workbench for the board, the survey, and Z3.</p>
+            <p class="wiz-fields-copy">One sheet per league. Preview any coach or referee — each weekend, travel, conflicts — immediately.</p>
+            <label class="wiz-person">Preview
+              <select data-wizard-person>
+                <option value="">Whole league</option>
+              </select>
+            </label>
+            <p class="wiz-live" data-wizard-person-line hidden></p>
+            <p class="wiz-live" data-wizard-edit-score hidden></p>
+            <p class="wiz-edit-hint" data-wizard-edit-hint hidden></p>
+            <ul class="wiz-conflicts" data-wizard-edit-conflicts hidden></ul>
             <nav class="wiz-sheet-tabs" data-wizard-sheet-tabs hidden></nav>
             <div class="wiz-sheet" data-wizard-sheet></div>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="plan">Back to build</button>
+              <button type="button" class="wiz-continue" data-wizard-edit-schedule hidden>Edit this schedule</button>
+              <button type="button" class="wiz-back" data-wizard-undo-edit hidden>Undo last edit</button>
               <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
             </div>
           </div>
