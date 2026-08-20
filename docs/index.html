@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-B6soAjqh.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Bc9NQ1JM.css">
+    <script type="module" crossorigin src="./assets/index-DQkFEULD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BS5s4h2j.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -81,6 +81,9 @@
               <button type="button" class="wiz-continue" data-wizard-approve-clocks>
                 These clocks look right — next: where are the fields?
               </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
             </div>
           </div>
           <div class="wiz-fields" data-wizard-fields hidden>
@@ -121,6 +124,9 @@
               <button type="button" class="wiz-continue" data-wizard-continue-fields>
                 These fields look right — next: kids on each team
               </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
             </div>
           </div>
           <div class="wiz-kids" data-wizard-kids hidden data-wizard-kids-saved="no">
@@ -136,6 +142,9 @@
               </button>
               <button type="button" class="wiz-continue" data-wizard-kids-without>
                 We don’t need player names — proceed without that data
+              </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
               </button>
             </div>
           </div>
@@ -172,6 +181,9 @@
               <button type="button" class="wiz-continue" data-wizard-refs-without>
                 No referees — proceed without them
               </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
             </div>
           </div>
           <div class="wiz-away" data-wizard-away hidden data-wizard-away-n="0">
@@ -205,19 +217,30 @@
               <button type="button" class="wiz-continue" data-wizard-continue-away>
                 These travel weekends look right — next: build
               </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
             </div>
           </div>
           <div class="wiz-plan" data-wizard-plan hidden data-wizard-plan-settled="no">
             <p class="wiz-ask" data-wizard-plan-ask>Build the season</p>
-            <p class="wiz-fields-copy">Search until it settles. It will stop on its own. Clocks include the breaks. Fields are named. The full workbench still has Z3 Calculate.</p>
+            <p class="wiz-fields-copy">Search until it settles. If you add fields or change clocks, Do it again recalculates from those details.</p>
             <p class="wiz-live" data-wizard-plan-live>Waiting to search…</p>
             <p class="wiz-saved" data-wizard-plan-settled-line hidden></p>
             <div data-wizard-plan-spark></div>
             <div data-wizard-plan-minimap></div>
+            <p class="wiz-recalc-wrap">
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
+            </p>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="away">Back to away weeks</button>
               <button type="button" class="wiz-continue" data-wizard-plan-continue hidden disabled>
                 The plan settled — next: schedule
+              </button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
               </button>
               <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
             </div>
@@ -239,10 +262,18 @@
             <p class="wiz-live" data-wizard-edit-score hidden></p>
             <p class="wiz-edit-hint" data-wizard-edit-hint hidden></p>
             <ul class="wiz-conflicts" data-wizard-edit-conflicts hidden></ul>
+            <p class="wiz-recalc-wrap">
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
+            </p>
             <nav class="wiz-sheet-tabs" data-wizard-sheet-tabs hidden></nav>
             <div class="wiz-sheet" data-wizard-sheet></div>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="plan">Back to build</button>
+              <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
+                Do it again — recalculate the schedule
+              </button>
               <button type="button" class="wiz-continue" data-wizard-edit-schedule hidden>Edit this schedule</button>
               <button type="button" class="wiz-back" data-wizard-undo-edit hidden>Undo last edit</button>
               <button type="button" class="wiz-continue" data-wizard-download-sheet>Download Excel</button>
