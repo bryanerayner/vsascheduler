@@ -4,9 +4,9 @@ Commissioner workbench for Van Soccer Association.
 
 **Live:** https://bryanerayner.github.io/vsascheduler/
 
-Password: `van-season`
+No password. The workbench opens on load.
 
-The first load may refresh once so Z3 can run (GitHub Pages does not send COOP/COEP headers; a small service worker adds them).
+The first visit may refresh once so Z3 can run (GitHub Pages does not send COOP/COEP headers; a small service worker adds them).
 
 ## What it is
 
