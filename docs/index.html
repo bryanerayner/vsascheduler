@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-bjGRV3Wc.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DmHYFQ8e.css">
+    <script type="module" crossorigin src="./assets/index-Dal-jwpC.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-itkG-0t2.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -30,8 +30,9 @@
           <li data-wiz-step="fields"><span>3</span> Fields</li>
           <li data-wiz-step="kids"><span>4</span> Players</li>
           <li data-wiz-step="refs"><span>5</span> Referees</li>
-          <li data-wiz-step="plan"><span>6</span> Build</li>
-          <li data-wiz-step="done"><span>7</span> Schedule</li>
+          <li data-wiz-step="away"><span>6</span> Away</li>
+          <li data-wiz-step="plan"><span>7</span> Build</li>
+          <li data-wiz-step="done"><span>8</span> Schedule</li>
         </ol>
         <div class="wiz-body">
           <p class="wiz-lead" data-wizard-lead>Drop the coaching roster. We will read team names, brackets, and coaches — nothing else is invented.</p>
@@ -161,13 +162,38 @@
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="kids">Back to players</button>
               <button type="button" class="wiz-continue" data-wizard-refs-continue hidden disabled>
-                These referees look right — next: build
+                These referees look right — next: away weeks
               </button>
               <button type="button" class="wiz-warn-ack" data-wizard-refs-warn hidden>
                 I see — no referees listed
               </button>
               <button type="button" class="wiz-continue" data-wizard-refs-without>
                 No referees — proceed without them
+              </button>
+            </div>
+          </div>
+          <div class="wiz-away" data-wizard-away hidden data-wizard-away-n="0">
+            <p class="wiz-ask" data-wizard-away-ask>Away weekends?</p>
+            <p class="wiz-fields-copy">Say which Saturday we travel, which other org we play, and which league. Skip this if every week is at home.</p>
+            <p class="wiz-live" data-wizard-away-need></p>
+            <form class="wiz-away-form" data-wizard-away-form>
+              <label>Week
+                <select data-away-week></select>
+              </label>
+              <label>League
+                <select data-away-bracket></select>
+              </label>
+              <label>Other org
+                <input data-away-org name="org" list="away-orgs" autocomplete="off" placeholder="e.g. Mineola" />
+                <datalist id="away-orgs"></datalist>
+              </label>
+              <button type="submit" class="wiz-add" data-wizard-add-away>Add this away weekend</button>
+            </form>
+            <ul class="wiz-fields-list" data-wizard-away-list hidden></ul>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="refs">Back to referees</button>
+              <button type="button" class="wiz-continue" data-wizard-continue-away>
+                These away weeks look right — next: build
               </button>
             </div>
           </div>
@@ -179,7 +205,7 @@
             <div data-wizard-plan-spark></div>
             <div data-wizard-plan-minimap></div>
             <div class="wiz-actions">
-              <button type="button" class="wiz-back" data-wizard-back="refs">Back to referees</button>
+              <button type="button" class="wiz-back" data-wizard-back="away">Back to away weeks</button>
               <button type="button" class="wiz-continue" data-wizard-plan-continue hidden disabled>
                 The plan settled — next: schedule
               </button>

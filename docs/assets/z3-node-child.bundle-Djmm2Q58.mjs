@@ -861,6 +861,7 @@ function isHomeGuestDate(league, dateIso) {
   });
 }
 function isAwayGuestDate(league, dateIso) {
+  if ((league.season.awayWeekends || []).some((w) => w.dateIso === dateIso)) return true;
   return league.season.specials.some((s) => {
     if (s.kind !== "interleague-away" || !s.iso) return false;
     return specialSnapsTo(s.iso, dateIso);
@@ -2148,10 +2149,16 @@ function buildJobs(league, plan, matchups) {
     const still = league.teams.filter((t) => !used.has(teamLabel(t)) && controlledAssoc(league, t.association));
     const awayDate = isAwayGuestDate(league, dateIso);
     const homeDate = isHomeGuestDate(league, dateIso);
+    const trips = (league.season.awayWeekends || []).filter((w) => w.dateIso === dateIso);
     for (const van of still) {
       if (used.has(teamLabel(van))) continue;
-      if (!van.awayDesired && !van.guestDesired && !van.guestTravel) continue;
-      const pool = guests.filter((g) => norm(g.bracket) === norm(van.bracket));
+      const trip = trips.find((w) => norm(w.bracket) === norm(van.bracket));
+      if (!van.awayDesired && !van.guestDesired && !van.guestTravel && !trip) continue;
+      const pool = guests.filter((g) => {
+        if (norm(g.bracket) !== norm(van.bracket)) return false;
+        if (trip) return norm(g.association) === norm(trip.association);
+        return true;
+      });
       if (!pool.length) continue;
       const ranked = [...pool].sort((a, b) => {
         const la = guestLoad.get(teamLabel(a)) || 0;
