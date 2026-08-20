@@ -9,12 +9,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-OJ9ilCb9.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CJrJXoLa.css">
+    <script type="module" crossorigin src="./assets/index-BM50u6a7.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DiCeFBVa.css">
   </head>
   <body>
-    <div id="app">
-      <section class="screen bench" data-screen="workbench">
+    <div id="app" data-ui="wizard">
+      <section class="screen wizard" data-screen="wizard" data-wizard-step="drop">
+        <header class="top">
+          <div>
+            <h1 data-header="wizard-product">Van Season — Fall 2026</h1>
+            <p class="note" data-note="wizard-browser-only">everything stays in this browser until you save a file</p>
+          </div>
+          <div class="top-actions">
+            <button type="button" class="quiet" data-action="use-advanced">Advanced workbench</button>
+          </div>
+        </header>
+        <ol class="wiz-rail" data-wizard-rail>
+          <li data-wiz-step="drop" aria-current="step"><span>1</span> Workbook</li>
+          <li data-wiz-step="settings"><span>2</span> Clocks</li>
+          <li data-wiz-step="fields"><span>3</span> Fields</li>
+          <li data-wiz-step="kids"><span>4</span> Players</li>
+          <li data-wiz-step="refs"><span>5</span> Referees</li>
+          <li data-wiz-step="plan"><span>6</span> Build</li>
+          <li data-wiz-step="done"><span>7</span> Schedule</li>
+        </ol>
+        <div class="wiz-body">
+          <p class="wiz-lead">Drop the coaching roster. We will read team names, brackets, and coaches — nothing else is invented.</p>
+          <div class="progress" data-wizard-progress hidden></div>
+          <div class="refusal" data-wizard-refusal hidden>
+            <h2 data-wizard-refusal-title>This file could not become a season.</h2>
+            <p data-wizard-refusal-body></p>
+          </div>
+          <label class="wiz-drop door" data-wizard-drop data-door="wizard-drop">
+            <strong>Drop the Excel here</strong>
+            <span>A coaching roster is enough. Duplicate rows and empty table padding are skipped.</span>
+            <input data-wizard-input="workbook" type="file" accept=".xlsx,.xls,.csv" />
+          </label>
+          <div class="wiz-roster" data-wizard-roster hidden>
+            <p class="wiz-summary" data-wizard-summary></p>
+            <p class="wiz-dedupe" data-wizard-dedupe hidden></p>
+            <div class="wiz-brackets" data-wizard-brackets></div>
+            <ul class="wiz-holes" data-wizard-holes hidden></ul>
+            <label class="wiz-again">
+              Drop a different workbook
+              <input data-wizard-input="replace" type="file" accept=".xlsx,.xls,.csv" />
+            </label>
+            <button type="button" class="wiz-continue" data-wizard-continue disabled>
+              Looks right — next we will ask where the fields are
+            </button>
+          </div>
+        </div>
+        <footer class="foot" data-footer="wizard">A one-page tool. No server. The season lives in the files you download.</footer>
+      </section>
+
+      <section class="screen bench" data-screen="workbench" hidden>
         <header class="top">
           <div>
             <h1 data-header="product">Van Season — Fall 2026</h1>
@@ -22,6 +70,7 @@
             <p class="note" data-published-line>Published: none yet</p>
           </div>
           <div class="top-actions">
+            <button type="button" class="quiet" data-action="use-wizard">Simple wizard</button>
             <div class="search-host" data-search-host></div>
             <button type="button" class="quiet" data-action="download-workbook" hidden>Download workbook</button>
             <button type="button" class="quiet" data-action="save-season" hidden>Save season file</button>
