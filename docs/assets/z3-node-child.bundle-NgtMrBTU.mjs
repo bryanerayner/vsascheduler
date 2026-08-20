@@ -1049,7 +1049,7 @@ function scoreSeasonZ3(league, games) {
       hard += HARD;
       row.hard += HARD;
     }
-    if (!g.center) {
+    if (!g.center && !league.season.proceedWithoutStaff) {
       hard += HARD;
       row.hard += HARD;
     }
@@ -1488,23 +1488,24 @@ function judgePerson(league, name, mine) {
   }
   return { scars, traces };
 }
-function scoreFrom(scars, traces, dutyCount) {
+function scoreFrom(scars, traces, dutyCount, allowUnstaffed = false) {
   const twoPlaces = scars.filter((s) => s.kind === "two-places").length;
   const late = scars.filter((s) => s.kind === "late").length;
   const refFlights = scars.filter((s) => s.kind === "ref-flight").length;
   const unstaffed = traces.filter((t) => t.verdict === "unstaffed").length;
+  const unstaffedCost = allowUnstaffed ? 0 : unstaffed;
   const evenTwo = traces.filter((t) => t.verdict === "even-two-cars-cannot").length;
   const needTwo = traces.filter((t) => t.verdict === "needs-two-cars").length;
   let score = 100;
   score -= twoPlaces * 40;
   score -= late * 20;
   score -= refFlights * 35;
-  score -= unstaffed * 30;
+  score -= unstaffedCost * 30;
   score -= evenTwo * 40;
   score -= needTwo * 25;
   score -= scars.filter((s) => s.kind === "travel").length * 20;
   if (score < 0) score = 0;
-  const legal = twoPlaces === 0 && late === 0 && refFlights === 0 && unstaffed === 0 && evenTwo === 0;
+  const legal = twoPlaces === 0 && late === 0 && refFlights === 0 && unstaffedCost === 0 && evenTwo === 0;
   const feasible = legal && needTwo === 0;
   if (!feasible) score = Math.min(score, 49);
   const onTime = Math.max(0, dutyCount - late);
@@ -1520,10 +1521,13 @@ function playSaturday(league, cfg, dateIso) {
   const { agents, duties } = collectDuties(league, games);
   const scars = [];
   const traces = [];
+  const allowUnstaffed = !!league.season.proceedWithoutStaff;
   for (const game of games) {
     if (!game.center) {
-      const text = `Unplayable: ${game.ageGroup} needs a center referee on ${dateIso} and none are available.`;
-      scars.push({ kind: "unstaffed", agent: `${game.home} vs ${game.away}`, text });
+      const text = allowUnstaffed ? `${game.ageGroup} has no center referee on ${dateIso} \u2014 recorded: proceed without named staff.` : `Unplayable: ${game.ageGroup} needs a center referee on ${dateIso} and none are available.`;
+      if (!allowUnstaffed) {
+        scars.push({ kind: "unstaffed", agent: `${game.home} vs ${game.away}`, text });
+      }
       traces.push({
         id: slug(game.id || `${game.home}-${game.away}`),
         subject: `${game.home} vs ${game.away}`,
@@ -1574,7 +1578,7 @@ function playSaturday(league, cfg, dateIso) {
     dateIso,
     agents,
     duties,
-    score: scoreFrom(uniqScars, uniqTraces, uniqueDutyCount(byAgent))
+    score: scoreFrom(uniqScars, uniqTraces, uniqueDutyCount(byAgent), allowUnstaffed)
   };
 }
 function judgeSeason(league, cfg) {

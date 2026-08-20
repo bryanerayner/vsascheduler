@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-CTNx7GpH.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BzvA6rM6.css">
+    <script type="module" crossorigin src="./assets/index-bjGRV3Wc.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DmHYFQ8e.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -138,21 +138,36 @@
           </div>
           <div class="wiz-refs" data-wizard-refs hidden data-wizard-refs-warned="no" data-wizard-refs-saved="no">
             <p class="wiz-ask" data-wizard-refs-ask>Referee staff?</p>
-            <p class="wiz-fields-copy">This roster has no referee names. We will not invent staff. You can schedule without them, but you have to see that first — games may go unstaffed.</p>
+            <p class="wiz-fields-copy">Add referees right here. If the roster did not name any, that is fine — you can still build a schedule, and games may go unstaffed.</p>
             <p class="wiz-warn" data-wizard-refs-warn-line hidden></p>
             <p class="wiz-live" data-wizard-refs-need></p>
             <p class="wiz-saved" data-wizard-refs-saved-line hidden></p>
-            <ul class="wiz-holes" data-wizard-refs-list hidden></ul>
+            <form class="wiz-ref-form" data-wizard-ref-form>
+              <label>First name
+                <input data-ref-first name="first" autocomplete="off" placeholder="e.g. Quinn" />
+              </label>
+              <label>Last name
+                <input data-ref-last name="last" autocomplete="off" placeholder="e.g. Adler" />
+              </label>
+              <label>Phone
+                <input data-ref-phone name="phone" autocomplete="off" placeholder="optional" />
+              </label>
+              <fieldset class="wiz-centers" data-ref-centers>
+                <legend>Center of</legend>
+              </fieldset>
+              <button type="submit" class="wiz-add" data-wizard-add-ref>Add this referee</button>
+            </form>
+            <ul class="wiz-fields-list" data-wizard-refs-list hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="kids">Back to players</button>
               <button type="button" class="wiz-continue" data-wizard-refs-continue hidden disabled>
                 These referees look right — next: build
               </button>
-              <button type="button" class="wiz-warn-ack" data-wizard-refs-warn>
+              <button type="button" class="wiz-warn-ack" data-wizard-refs-warn hidden>
                 I see — no referees listed
               </button>
-              <button type="button" class="wiz-continue" data-wizard-refs-without hidden disabled>
-                Proceed without referee staff — next: build
+              <button type="button" class="wiz-continue" data-wizard-refs-without>
+                No referees — proceed without them
               </button>
             </div>
           </div>
