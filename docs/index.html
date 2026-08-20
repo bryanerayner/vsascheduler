@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-BouIIMn-.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DwW8TnN3.css">
+    <script type="module" crossorigin src="./assets/index-CcRmEB-j.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DGiJBCOv.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -59,7 +59,7 @@
             </button>
           </div>
           <div class="wiz-settings" data-wizard-settings hidden>
-            <p class="wiz-ntssa" data-wizard-clocks-source>North Texas Soccer (NTSSA) / USSF PDI clocks. Change any number — the season updates immediately. Approve when they look right.</p>
+            <p class="wiz-ntssa" data-wizard-clocks-source>North Texas Soccer clocks. 8U is 40 minutes of play and 50 on the clock once water and half-time are in. Drag the bar or type — packing updates now.</p>
             <div class="wiz-season" data-wizard-season data-assumed-window>
               <label>First Saturday
                 <input type="date" data-season-field="firstIso" />
@@ -82,14 +82,16 @@
           </div>
           <div class="wiz-fields" data-wizard-fields hidden>
             <p class="wiz-ask" data-wizard-fields-ask>WHERE ARE THE FIELDS?</p>
-            <p class="wiz-fields-copy">The roster did not name a pitch. We will not invent grass. Name the complex before we place a Saturday.</p>
+            <p class="wiz-fields-copy">One NTSSA pitch per league is already on the map. Say how many, drag them around, or load the whole Van Complex.</p>
             <p class="wiz-fields-need" data-wizard-fields-need></p>
             <p class="wiz-fields-hole" data-wizard-fields-hole></p>
+            <div class="wiz-counts" data-wizard-field-counts></div>
+            <div data-field-sketch></div>
             <button type="button" class="wiz-van" data-wizard-adopt-van>
               <strong>We play at Van Complex</strong>
               <span>445 S Oak St, Van, TX — 12U, 10U, four small 6U/8U pitches, 16U at NTSSA yards</span>
             </button>
-            <p class="wiz-or">or name the grass yourself</p>
+            <p class="wiz-or">or name another pitch</p>
             <form class="wiz-pitch-form" data-wizard-pitch-form>
               <label>Campus
                 <input data-pitch-campus name="campus" autocomplete="off" placeholder="e.g. Van Complex" />
@@ -113,19 +115,37 @@
             <ul class="wiz-fields-list" data-wizard-fields-list hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="settings">Back to clocks</button>
-              <button type="button" class="wiz-continue" data-wizard-continue-fields disabled>
-                Need at least one real pitch before we continue
+              <button type="button" class="wiz-continue" data-wizard-continue-fields>
+                These fields look right — next: kids on each team
               </button>
             </div>
           </div>
           <div class="wiz-kids" data-wizard-kids hidden>
             <p class="wiz-ask" data-wizard-kids-ask>Kids on each team?</p>
-            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You have to say how to proceed.</p>
+            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You can schedule without that data, but you have to say so.</p>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="fields">Back to fields</button>
-              <button type="button" class="wiz-continue" data-wizard-kids-continue disabled>
-                Choose whether to proceed without player data
+              <button type="button" class="wiz-continue" data-wizard-kids-without>
+                We don’t need player names — proceed without that data
               </button>
+            </div>
+          </div>
+          <div class="wiz-refs" data-wizard-refs hidden>
+            <p class="wiz-ask" data-wizard-refs-ask>Referee staff?</p>
+            <p class="wiz-fields-copy">No referees are on this roster. You can proceed without naming them, but you should know that first.</p>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="kids">Back to players</button>
+              <button type="button" class="wiz-continue" data-wizard-refs-without>
+                Proceed without referee staff
+              </button>
+            </div>
+          </div>
+          <div class="wiz-plan" data-wizard-plan hidden>
+            <p class="wiz-ask" data-wizard-plan-ask>Build the season</p>
+            <p class="wiz-fields-copy">Clocks include the breaks. Fields are named. The full workbench still has Calculate, the board, and the satellite survey.</p>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="refs">Back to referees</button>
+              <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
             </div>
           </div>
         </div>

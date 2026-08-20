@@ -349,6 +349,59 @@ function mustUseMondayDiagnostic(league, games) {
   return `Honoring ${label} at ${lock.mustUse} every Saturday moved ${monday} 6U ${word} to Monday night.`;
 }
 
+// src/clock.ts
+var NTSSA_CLOCK = {
+  LL: { warmupMinutes: 15, firstHalfMinutes: 16, secondHalfMinutes: 16, waterBreakMinutes: 2, halfTimeMinutes: 4, vacateMinutes: 10 },
+  "6U": { warmupMinutes: 15, firstHalfMinutes: 16, secondHalfMinutes: 16, waterBreakMinutes: 2, halfTimeMinutes: 4, vacateMinutes: 10 },
+  "8U": { warmupMinutes: 15, firstHalfMinutes: 20, secondHalfMinutes: 20, waterBreakMinutes: 2, halfTimeMinutes: 6, vacateMinutes: 10 },
+  "10U": { warmupMinutes: 15, firstHalfMinutes: 25, secondHalfMinutes: 25, waterBreakMinutes: 0, halfTimeMinutes: 5, vacateMinutes: 10 },
+  "12U": { warmupMinutes: 15, firstHalfMinutes: 30, secondHalfMinutes: 30, waterBreakMinutes: 0, halfTimeMinutes: 10, vacateMinutes: 10 },
+  "14U": { warmupMinutes: 15, firstHalfMinutes: 35, secondHalfMinutes: 35, waterBreakMinutes: 0, halfTimeMinutes: 10, vacateMinutes: 10 },
+  "16U": { warmupMinutes: 15, firstHalfMinutes: 40, secondHalfMinutes: 40, waterBreakMinutes: 0, halfTimeMinutes: 10, vacateMinutes: 10 }
+};
+function bracketClockKey(raw) {
+  const s = String(raw || "").trim();
+  const uFirst = s.match(/^u\s*(\d+)/i);
+  if (uFirst) return `${uFirst[1]}U`;
+  const nU = s.match(/^(\d+)\s*u/i);
+  if (nU) return `${nU[1]}U`;
+  if (/^ll$|learner/i.test(s)) return "LL";
+  const girls = s.match(/^(\d+)\s*u\b/i);
+  if (girls) return `${girls[1]}U`;
+  return s;
+}
+function ntssaClock(bracket) {
+  const key = bracketClockKey(bracket);
+  const numbered = key.match(/^(\d+)U/i);
+  if (numbered && NTSSA_CLOCK[`${numbered[1]}U`]) return { ...NTSSA_CLOCK[`${numbered[1]}U`] };
+  if (NTSSA_CLOCK[key]) return { ...NTSSA_CLOCK[key] };
+  return { ...NTSSA_CLOCK["6U"] };
+}
+function num(n, fallback) {
+  return n == null || !Number.isFinite(n) || n < 0 ? fallback : Math.round(n);
+}
+function resolveClock(ag) {
+  const def = ntssaClock(ag?.name || "6U");
+  const play = num(ag?.gameLengthMinutes, def.firstHalfMinutes + def.secondHalfMinutes);
+  const first = num(ag?.firstHalfMinutes, Math.floor(play / 2));
+  const second = num(ag?.secondHalfMinutes, Math.max(0, play - first));
+  return {
+    warmupMinutes: num(ag?.warmupMinutes, def.warmupMinutes),
+    firstHalfMinutes: first,
+    secondHalfMinutes: second,
+    waterBreakMinutes: num(ag?.waterBreakMinutes, def.waterBreakMinutes),
+    halfTimeMinutes: num(ag?.halfTimeMinutes, def.halfTimeMinutes),
+    vacateMinutes: num(ag?.vacateMinutes, def.vacateMinutes)
+  };
+}
+function playMinutes(c) {
+  return c.firstHalfMinutes + c.secondHalfMinutes;
+}
+function onClockMinutes(c) {
+  const waters = c.waterBreakMinutes > 0 ? 2 * c.waterBreakMinutes : 0;
+  return playMinutes(c) + waters + c.halfTimeMinutes;
+}
+
 // src/folding.ts
 var FAKE_LEAGUE_HEAP_BOUND = 48;
 function heapBoundFor(naivePersonVars) {
@@ -1701,11 +1754,11 @@ async function optimizeSeasonMatchups(league, loadZ3 = defaultLoadZ3) {
       continue;
     }
     const model = opt.model();
-    for (const ev of extraVars) extras += num(model, ev);
+    for (const ev of extraVars) extras += num2(model, ev);
     for (let wi = 0; wi < sats.length; wi++) {
       const chosen = [];
       for (let pi = 0; pi < legal.length; pi++) {
-        if (num(model, vars[wi][pi]) === 1) {
+        if (num2(model, vars[wi][pi]) === 1) {
           chosen.push([teamLabel(legal[pi][0]), teamLabel(legal[pi][1])]);
         }
       }
@@ -1757,8 +1810,8 @@ function pairTeamsLegal(teams, weekIndex) {
   }
   return out;
 }
-function occupies(kickoffMin, length) {
-  return { warmup: kickoffMin - 15, end: kickoffMin + length, vacate: kickoffMin + length + 10 };
+function occupies(kickoffMin, length, warmup = 15, vacate = 10) {
+  return { warmup: kickoffMin - warmup, end: kickoffMin + length, vacate: kickoffMin + length + vacate };
 }
 function fmt(min) {
   return formatClockShort(min);
@@ -1931,7 +1984,8 @@ function peopleOn(plan, home, away) {
   return [.../* @__PURE__ */ new Set([...satKeysForTeam(plan, home), ...satKeysForTeam(plan, away)])];
 }
 function ageMinutes(league, bracket) {
-  return league.ageGroups.find((a) => norm(a.name) === norm(bracket))?.gameLengthMinutes || 50;
+  const ag = league.ageGroups.find((a) => norm(a.name) === norm(bracket));
+  return onClockMinutes(resolveClock(ag));
 }
 function controlledAssoc(league, name) {
   return !!league.associations.find((a) => norm(a.name) === norm(name) && a.controlled);
@@ -1999,7 +2053,8 @@ function mayPlayTogether(league, a, b) {
 function pushJob(jobs, diagnostics, league, plan, dateIso, weekIndex, home, away, notes) {
   if (refusedPair(home, away)) return;
   const shorter = ageMinutes(league, home.bracket) <= ageMinutes(league, away.bracket) ? home.bracket : away.bracket;
-  const length = Math.min(ageMinutes(league, home.bracket), ageMinutes(league, away.bracket));
+  const clock3 = resolveClock(league.ageGroups.find((a) => norm(a.name) === norm(shorter)));
+  const length = onClockMinutes(clock3);
   const base = mixedFields(league, home, away);
   const awayLeague = notes.find((n) => n.startsWith("away \u2014 "))?.slice("away \u2014 ".length);
   const guestHome = notes.some((n) => n.startsWith("guest \u2014 "));
@@ -2019,6 +2074,8 @@ function pushJob(jobs, diagnostics, league, plan, dateIso, weekIndex, home, away
     away,
     bracket: shorter,
     length,
+    warmup: clock3.warmupMinutes,
+    vacatePad: clock3.vacateMinutes,
     people: peopleOn(plan, home, away),
     fields,
     notes
@@ -2111,7 +2168,7 @@ function buildJobs(league, plan, matchups) {
   });
   return { jobs, diagnostics };
 }
-function num(model, expr) {
+function num2(model, expr) {
   const raw = model.eval(expr).toString();
   const n = Number(raw);
   if (!Number.isFinite(n)) throw new Error(`Z3 model was not a number: ${raw}`);
@@ -2169,7 +2226,7 @@ function candidatesFor(league, job, slots) {
       const kick = use[rawSi];
       if (day !== "saturday" && !preferredKickOnDay(league, job.bracket, day, kick)) continue;
       if (carveForbids(league, job, iso2, kick)) continue;
-      const occ = occupies(kick, job.length);
+      const occ = occupies(kick, job.length, job.warmup, job.vacatePad);
       const dayVenue = day === "saturday" ? preferredVenue(league, job.bracket, kick) : void 0;
       for (let fi = 0; fi < job.fields.length; fi++) {
         const field = job.fields[fi];
@@ -2358,11 +2415,11 @@ async function solveJobs(league, jobs, loadZ3) {
     if (encoded.live.length) {
       const model = opt.model();
       for (let li = 0; li < encoded.live.length; li++) {
-        const si = num(model, encoded.slotVar[li]);
-        const fi = num(model, encoded.fieldVar[li]);
+        const si = num2(model, encoded.slotVar[li]);
+        const fi = num2(model, encoded.fieldVar[li]);
         const cand = encoded.live[li].cands.find((c) => c.si === si && c.fi === fi);
         if (!cand) throw new Error(`Z3 sat but no candidate for ${encoded.live[li].job.key}`);
-        const ri = num(model, encoded.centerVar[li]);
+        const ri = num2(model, encoded.centerVar[li]);
         placedAll.push({
           job: encoded.live[li].job,
           cand,
