@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-Dal-jwpC.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-itkG-0t2.css">
+    <script type="module" crossorigin src="./assets/index-BbsJMQ7D.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BdJ-gAjm.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -173,8 +173,8 @@
             </div>
           </div>
           <div class="wiz-away" data-wizard-away hidden data-wizard-away-n="0">
-            <p class="wiz-ask" data-wizard-away-ask>Away weekends?</p>
-            <p class="wiz-fields-copy">Say which Saturday we travel, which other org we play, and which league. Skip this if every week is at home.</p>
+            <p class="wiz-ask" data-wizard-away-ask>Travel weekends?</p>
+            <p class="wiz-fields-copy">Pick the Saturday, the other org, and the league. Then say whether we go there, or they come HERE.</p>
             <p class="wiz-live" data-wizard-away-need></p>
             <form class="wiz-away-form" data-wizard-away-form>
               <label>Week
@@ -187,13 +187,14 @@
                 <input data-away-org name="org" list="away-orgs" autocomplete="off" placeholder="e.g. Mineola" />
                 <datalist id="away-orgs"></datalist>
               </label>
-              <button type="submit" class="wiz-add" data-wizard-add-away>Add this away weekend</button>
+              <button type="submit" class="wiz-add" data-wizard-add-away>We travel there</button>
+              <button type="submit" class="wiz-add wiz-add-here" data-wizard-add-home>They come HERE</button>
             </form>
             <ul class="wiz-fields-list" data-wizard-away-list hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="refs">Back to referees</button>
               <button type="button" class="wiz-continue" data-wizard-continue-away>
-                These away weeks look right — next: build
+                These travel weekends look right — next: build
               </button>
             </div>
           </div>

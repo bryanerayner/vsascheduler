@@ -855,6 +855,7 @@ function specialSnapsTo(iso2, dateIso) {
   return Math.abs(Date.parse(`${iso2}T00:00:00Z`) - Date.parse(`${dateIso}T00:00:00Z`)) <= 2 * 864e5;
 }
 function isHomeGuestDate(league, dateIso) {
+  if ((league.season.homeWeekends || []).some((w) => w.dateIso === dateIso)) return true;
   return league.season.specials.some((s) => {
     if (s.kind !== "interleague-home" || !s.iso) return false;
     return specialSnapsTo(s.iso, dateIso);
@@ -2150,13 +2151,16 @@ function buildJobs(league, plan, matchups) {
     const awayDate = isAwayGuestDate(league, dateIso);
     const homeDate = isHomeGuestDate(league, dateIso);
     const trips = (league.season.awayWeekends || []).filter((w) => w.dateIso === dateIso);
+    const visits = (league.season.homeWeekends || []).filter((w) => w.dateIso === dateIso);
     for (const van of still) {
       if (used.has(teamLabel(van))) continue;
       const trip = trips.find((w) => norm(w.bracket) === norm(van.bracket));
-      if (!van.awayDesired && !van.guestDesired && !van.guestTravel && !trip) continue;
+      const visit = visits.find((w) => norm(w.bracket) === norm(van.bracket));
+      if (!van.awayDesired && !van.guestDesired && !van.guestTravel && !trip && !visit) continue;
+      const wantAssoc = trip?.association || visit?.association;
       const pool = guests.filter((g) => {
         if (norm(g.bracket) !== norm(van.bracket)) return false;
-        if (trip) return norm(g.association) === norm(trip.association);
+        if (wantAssoc) return norm(g.association) === norm(wantAssoc);
         return true;
       });
       if (!pool.length) continue;
@@ -2168,7 +2172,7 @@ function buildJobs(league, plan, matchups) {
       });
       const opp = ranked.find((g) => (guestLoad.get(teamLabel(g)) || 0) < guestCap(league, g));
       if (!opp) continue;
-      const weTravel = awayDate || /we travel/i.test(van.guestTravel || "") && !homeDate;
+      const weTravel = trip ? true : visit ? false : awayDate || /we travel/i.test(van.guestTravel || "") && !homeDate;
       const notes = weTravel ? [`away \u2014 ${opp.association}`] : [`guest \u2014 ${opp.association} at home`];
       const home = weTravel ? opp : van;
       const away = weTravel ? van : opp;
