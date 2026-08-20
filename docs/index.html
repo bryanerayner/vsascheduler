@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-CcRmEB-j.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DGiJBCOv.css">
+    <script type="module" crossorigin src="./assets/index-qP_h5p0A.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-usdl10v8.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -120,11 +120,17 @@
               </button>
             </div>
           </div>
-          <div class="wiz-kids" data-wizard-kids hidden>
+          <div class="wiz-kids" data-wizard-kids hidden data-wizard-kids-saved="no">
             <p class="wiz-ask" data-wizard-kids-ask>Kids on each team?</p>
-            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You can schedule without that data, but you have to say so.</p>
+            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You can schedule without that data, but you have to say so — that choice is saved on the season.</p>
+            <p class="wiz-live" data-wizard-kids-need></p>
+            <p class="wiz-saved" data-wizard-kids-saved-line hidden></p>
+            <ul class="wiz-holes" data-wizard-kids-hollow hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="fields">Back to fields</button>
+              <button type="button" class="wiz-continue" data-wizard-kids-continue hidden disabled>
+                These rosters look right — next: referees
+              </button>
               <button type="button" class="wiz-continue" data-wizard-kids-without>
                 We don’t need player names — proceed without that data
               </button>
