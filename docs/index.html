@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-DAoVHGMD.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BSymnlJj.css">
+    <script type="module" crossorigin src="./assets/index-Cjj8UP_S.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DHw5RCgL.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -156,11 +156,26 @@
               </button>
             </div>
           </div>
-          <div class="wiz-plan" data-wizard-plan hidden>
+          <div class="wiz-plan" data-wizard-plan hidden data-wizard-plan-settled="no">
             <p class="wiz-ask" data-wizard-plan-ask>Build the season</p>
-            <p class="wiz-fields-copy">Clocks include the breaks. Fields are named. The full workbench still has Calculate, the board, and the satellite survey.</p>
+            <p class="wiz-fields-copy">Search until it settles. It will stop on its own. Clocks include the breaks. Fields are named. The full workbench still has Z3 Calculate.</p>
+            <p class="wiz-live" data-wizard-plan-live>Waiting to search…</p>
+            <p class="wiz-saved" data-wizard-plan-settled-line hidden></p>
+            <div data-wizard-plan-spark></div>
+            <div data-wizard-plan-minimap></div>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="refs">Back to referees</button>
+              <button type="button" class="wiz-continue" data-wizard-plan-continue hidden disabled>
+                The plan settled — next: schedule
+              </button>
+              <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
+            </div>
+          </div>
+          <div class="wiz-done" data-wizard-done hidden>
+            <p class="wiz-ask" data-wizard-done-ask>Schedule</p>
+            <p class="wiz-fields-copy">The search settled. One sheet per league is next — or open the full workbench.</p>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-back" data-wizard-back="plan">Back to build</button>
               <button type="button" class="wiz-continue" data-action="use-advanced">Open the full workbench</button>
             </div>
           </div>
@@ -259,7 +274,10 @@
           <span data-ga-best-sims>best Sims —</span>
           ·
           <span data-ga-z3-joined="no">Z3 sitting not in yet</span>
+          ·
+          <span data-ga-converged="no">searching</span>
         </p>
+        <div data-ga-spark-host></div>
         <div data-ga-minimap></div>
         <div data-ga-day-entry></div>
       </div>
