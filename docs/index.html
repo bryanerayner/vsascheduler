@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-qP_h5p0A.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-usdl10v8.css">
+    <script type="module" crossorigin src="./assets/index-DAoVHGMD.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BSymnlJj.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -136,13 +136,23 @@
               </button>
             </div>
           </div>
-          <div class="wiz-refs" data-wizard-refs hidden>
+          <div class="wiz-refs" data-wizard-refs hidden data-wizard-refs-warned="no" data-wizard-refs-saved="no">
             <p class="wiz-ask" data-wizard-refs-ask>Referee staff?</p>
-            <p class="wiz-fields-copy">No referees are on this roster. You can proceed without naming them, but you should know that first.</p>
+            <p class="wiz-fields-copy">This roster has no referee names. We will not invent staff. You can schedule without them, but you have to see that first — games may go unstaffed.</p>
+            <p class="wiz-warn" data-wizard-refs-warn-line hidden></p>
+            <p class="wiz-live" data-wizard-refs-need></p>
+            <p class="wiz-saved" data-wizard-refs-saved-line hidden></p>
+            <ul class="wiz-holes" data-wizard-refs-list hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="kids">Back to players</button>
-              <button type="button" class="wiz-continue" data-wizard-refs-without>
-                Proceed without referee staff
+              <button type="button" class="wiz-continue" data-wizard-refs-continue hidden disabled>
+                These referees look right — next: build
+              </button>
+              <button type="button" class="wiz-warn-ack" data-wizard-refs-warn>
+                I see — no referees listed
+              </button>
+              <button type="button" class="wiz-continue" data-wizard-refs-without hidden disabled>
+                Proceed without referee staff — next: build
               </button>
             </div>
           </div>
