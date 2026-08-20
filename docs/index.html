@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-SgniSOFa.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Bkzt92es.css">
+    <script type="module" crossorigin src="./assets/index-C8rqIAhq.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-mBPyFPzt.css">
   </head>
   <body>
     <div id="app" data-ui="wizard">
@@ -55,9 +55,11 @@
               Drop a different workbook
               <input data-wizard-input="replace" type="file" accept=".xlsx,.xls,.csv" />
             </label>
-            <button type="button" class="wiz-continue" data-wizard-continue data-wizard-next="settings" disabled>
-              Looks right — next, the NTSSA clocks
-            </button>
+            <div class="wiz-actions">
+              <button type="button" class="wiz-continue" data-wizard-continue data-wizard-next="settings" disabled>
+                Looks right — next, the NTSSA clocks
+              </button>
+            </div>
           </div>
           <div class="wiz-settings" data-wizard-settings hidden>
             <p class="wiz-ntssa" data-wizard-clocks-source>North Texas Soccer clocks. 8U is 40 minutes of play and 50 on the clock once water and half-time are in. Drag the bar or type — packing updates now.</p>
@@ -174,7 +176,7 @@
           </div>
           <div class="wiz-away" data-wizard-away hidden data-wizard-away-n="0">
             <p class="wiz-ask" data-wizard-away-ask>Travel weekends?</p>
-            <p class="wiz-fields-copy">Pick the Saturday, the other org, and the league. Then say whether we go there, or they come HERE.</p>
+            <p class="wiz-fields-copy">Pick the Saturday, the other org, and the league. Say where they play and how many minutes from Van. Then we go there, or they come HERE.</p>
             <p class="wiz-live" data-wizard-away-need></p>
             <form class="wiz-away-form" data-wizard-away-form>
               <label>Week
@@ -186,6 +188,13 @@
               <label>Other org
                 <input data-away-org name="org" list="away-orgs" autocomplete="off" placeholder="e.g. Mineola" />
                 <datalist id="away-orgs"></datalist>
+              </label>
+              <label>Where they play
+                <input data-away-campus name="campus" list="away-campuses" autocomplete="off" placeholder="e.g. Mineola Complex" />
+                <datalist id="away-campuses"></datalist>
+              </label>
+              <label>Minutes from Van
+                <input data-away-minutes name="minutes" inputmode="numeric" autocomplete="off" placeholder="e.g. 35" />
               </label>
               <button type="submit" class="wiz-add" data-wizard-add-away>We travel there</button>
               <button type="submit" class="wiz-add wiz-add-here" data-wizard-add-home>They come HERE</button>
