@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-XdYXdDSd.js"></script>
+    <script type="module" crossorigin src="./assets/index-BfTu8Y8a.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-DDA0BAQc.css">
   </head>
   <body>
@@ -523,15 +523,15 @@
           <li data-wiz-step="done"><span>8</span> Schedule</li>
         </ol>
         <div class="wiz-body">
-          <p class="wiz-lead" data-wizard-lead>Drop the team roster PDFs. We will read the team, the coach, and every named kid — nothing else is invented.</p>
+          <p class="wiz-lead" data-wizard-lead>Drop the team PDFs or the coaching roster.</p>
           <div class="progress" data-wizard-progress hidden></div>
           <div class="refusal" data-wizard-refusal hidden>
             <h2 data-wizard-refusal-title>This file could not become a season.</h2>
             <p data-wizard-refusal-body></p>
           </div>
           <label class="wiz-drop door" data-wizard-drop data-door="wizard-drop">
-            <strong>Drop the team PDFs here</strong>
-            <span>One North Texas roster printout per team. Drop several at once. Excel still works.</span>
+            <strong>Drop the team PDFs or the coaching roster</strong>
+            <span>One North Texas printout per team, or the coaching spreadsheet.</span>
             <input data-wizard-input="workbook" type="file" accept=".pdf,.xlsx,.xls,.csv,application/pdf" multiple />
           </label>
           <div class="local-file" data-local-file>
@@ -546,6 +546,7 @@
             <p class="wiz-dedupe" data-wizard-dedupe hidden></p>
             <div class="wiz-brackets" data-wizard-brackets></div>
             <ul class="wiz-holes" data-wizard-holes hidden></ul>
+            <p class="wiz-live" data-wizard-holes-next hidden></p>
             <label class="wiz-again">
               Add more team PDFs
               <input data-wizard-input="replace" type="file" accept=".pdf,.xlsx,.xls,.csv,application/pdf" multiple />
@@ -639,10 +640,10 @@
           </div>
           <div class="wiz-kids" data-wizard-kids hidden data-wizard-kids-saved="no">
             <p class="wiz-ask" data-wizard-kids-ask>Kids on each team?</p>
-            <p class="wiz-fields-copy" data-wizard-kids-copy>Drop the official North Texas roster PDFs. Several at once. That is how kids enter — there is no kid-by-kid form.</p>
+            <p class="wiz-fields-copy" data-wizard-kids-copy>Drop the official North Texas roster PDFs. Several at once. Or still schedule without names.</p>
             <label class="wiz-drop wiz-kids-drop" data-wizard-kids-drop>
               <strong data-wizard-kids-drop-title>Drop the official team PDFs</strong>
-              <span data-wizard-kids-drop-hint>North Texas Soccer Association Roster. One file per team. We will not invent children.</span>
+              <span data-wizard-kids-drop-hint>North Texas Soccer Association Roster. One file per team.</span>
               <input data-wizard-input="rosters" type="file" accept=".pdf,application/pdf" multiple />
             </label>
             <p class="wiz-live" data-wizard-kids-need></p>
@@ -655,7 +656,7 @@
                 These rosters look right — next: referees
               </button>
               <button type="button" class="wiz-continue" data-wizard-kids-without>
-                We don’t need player names — proceed without that data
+                No kid names yet — still schedule
               </button>
               <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
                 Do it again — recalculate the schedule
@@ -693,7 +694,7 @@
                 I see — no referees listed
               </button>
               <button type="button" class="wiz-continue" data-wizard-refs-without>
-                No referees — proceed without them
+                No referees yet — still schedule
               </button>
               <button type="button" class="wiz-recalc" data-wizard-recalculate hidden>
                 Do it again — recalculate the schedule
