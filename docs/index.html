@@ -9,11 +9,497 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,520;9..144,600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:," />
     <script src="./coi-serviceworker.min.js"></script>
-    <script type="module" crossorigin src="./assets/index-BKQyFNon.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Dl7ktR5_.css">
+    <script type="module" crossorigin src="./assets/index-BhtyAZyl.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DDA0BAQc.css">
   </head>
   <body>
-    <div id="app" data-ui="wizard">
+    <section class="who trail" data-screen="who">
+      <article class="trail-card">
+        <h1 data-who-title>Who are you and what do you do?</h1>
+        <p data-who-blurb>One phone. One job. The season file is the same for everyone, and it stays on this phone.</p>
+        <div class="who-chips" role="group" aria-label="Who are you and what do you do?">
+          <button type="button" class="trail-chip who-chip" data-who="parent">parent</button>
+          <button type="button" class="trail-chip who-chip" data-who="coach">coach</button>
+          <button type="button" class="trail-chip who-chip" data-who="assistant">assistant coach</button>
+          <button type="button" class="trail-chip who-chip" data-who="commissioner">commissioner</button>
+          <button type="button" class="trail-chip who-chip" data-who="photographer">photographer</button>
+          <button type="button" class="trail-chip who-chip" data-who="tournament">tournament coordinator</button>
+        </div>
+      </article>
+      <div class="local-file" data-local-file>
+        <p>This season stays on this phone.</p>
+        <label class="local-open">Open a season file
+          <input data-input="season" type="file" accept=".sqlite,.db" />
+        </label>
+        <button type="button" class="quiet" data-action="save-season">Save this season</button>
+      </div>
+    </section>
+    <section class="trail" data-screen="trail" data-trail="your-season" data-trail-card="start" hidden>
+      <article class="trail-card" data-card="start-with-your-family">
+        <h1 data-trail-title>Start with your family</h1>
+        <p data-trail-blurb>We will ask about your kids, then show your Saturdays.</p>
+      </article>
+      <article class="trail-card" data-card="picture-day-start" hidden>
+        <h1 data-trail-title>10U Hedgehogs</h1>
+      </article>
+      <article class="trail-card" data-card="taking-pictures" hidden>
+        <h1 data-trail-title>Are you taking pictures for this team?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Are you taking pictures for this team?">
+          <button type="button" class="trail-chip" data-trail-pictures="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-pictures="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card" data-card="same-grass" hidden>
+        <h1 data-trail-title>Do you need every player on the same grass?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Do you need every player on the same grass?">
+          <button type="button" class="trail-chip" data-trail-grass="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-grass="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="picture-day" hidden>
+        <h1 data-trail-title>Picture day — Fall 2026</h1>
+        <div class="trail-picture-day">
+          <p data-when-line>September 13 · 10U Hedgehogs · 11:00 · Van Complex Field C · Lot East</p>
+          <p data-arrive-line>Arrive 10:15. Everyone is here. Nobody is away.</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>One grass. The whole roster. This is the Saturday to shoot.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not hunt who is away.</p>
+      </article>
+      <article class="trail-card" data-card="tournament-start" hidden>
+        <h1 data-trail-title>Year-end tournament</h1>
+      </article>
+      <article class="trail-card" data-card="placing" hidden>
+        <h1 data-trail-title>Are you placing the year-end tournament?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Are you placing the year-end tournament?">
+          <button type="button" class="trail-chip" data-trail-placing="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-placing="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card" data-card="same-weekend" hidden>
+        <h1 data-trail-title>Does every Rec team need the same weekend?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Does every Rec team need the same weekend?">
+          <button type="button" class="trail-chip" data-trail-weekend="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-weekend="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="tournament-weekend" hidden>
+        <h1 data-trail-title>Tournament weekend — Fall 2026</h1>
+        <div class="trail-tournament-weekend">
+          <p data-when-line>December 5 · Van Complex · whole Rec league</p>
+          <p data-after-line>After November 14. Not the rain check. Not Thanksgiving week.</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>One campus. Every Rec team. This is the weekend to play.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not hunt which Saturday is still empty.</p>
+      </article>
+      <article class="trail-card" data-card="12u-van-rec" hidden>
+        <h1 data-trail-title>12U Van Rec</h1>
+      </article>
+      <article class="trail-card" data-card="start-with-your-league" hidden>
+        <h1 data-trail-title>Start with your league</h1>
+      </article>
+      <article class="trail-card" data-card="coordinate" hidden>
+        <h1 data-trail-title>Do you coordinate with other leagues?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Do you coordinate with other leagues?">
+          <button type="button" class="trail-chip" data-trail-coord="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-coord="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card" data-card="talking-to" hidden>
+        <h1 data-trail-title>Who are you talking to?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Who are you talking to?">
+          <button type="button" class="trail-chip trail-chip-org" data-trail-talking="mineola" aria-pressed="false">Mineola</button>
+          <button type="button" class="trail-chip trail-chip-org" data-trail-talking="forney" aria-pressed="false">Forney</button>
+        </div>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="weeks-we-can-share" hidden>
+        <h1 data-trail-title>Weeks we can share — Fall 2026</h1>
+        <div class="trail-share" data-trail-share>
+          <section data-share="host">
+            <h2>We can host</h2>
+            <ol>
+              <li data-sat="2026-09-20">September 20 · Van Complex</li>
+              <li data-sat="2026-10-18">October 18 · Van Complex</li>
+            </ol>
+          </section>
+          <section data-share="travel">
+            <h2>We can travel</h2>
+            <ol>
+              <li data-sat="2026-09-27" data-share-travel>September 27 · Mineola Complex</li>
+            </ol>
+          </section>
+        </div>
+        <p class="trail-strip" data-trail-strip>Two Saturdays here. One Saturday there. This is the note Mineola needs.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not hunt the calendar again to send it.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="will-not-share" hidden>
+        <h1 data-trail-title>These weeks will not share — Fall 2026</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>We offered September 20, October 18, and September 27.</p>
+          <p data-share-miss-theirs>Mineola can do August 30 and November 1.</p>
+          <p>No Saturday in common. 12U has no guest yet.</p>
+        </div>
+        <p class="trail-pin-hint" data-share-miss-hint>Pin this in Photos — this is the note Mineola needs.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow-we-host" hidden>
+        <h1 data-trail-title>Tomorrow we host — September 20</h1>
+        <div class="trail-tomorrow-host">
+          <p data-host-line>12U Van Rec hosts Mineola</p>
+          <p data-when-line>10:00 · Van Complex · Field E · Lot East</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>Guests are coming. You already know the lot.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not hunt the calendar at kickoff.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="do-not-host" hidden>
+        <h1 data-trail-title>Do not host — October 18</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>Tomorrow has no center. Guests stay home.</p>
+          <p>Do not bring Mineola to Lot East.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — the old host card is wrong.</p>
+      </article>
+      <article class="trail-card" data-card="find-refs" hidden>
+        <h1 data-trail-title>Do you find referees for this team?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Do you find referees for this team?">
+          <button type="button" class="trail-chip" data-trail-refs="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-refs="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="our-whistles" hidden>
+        <h1 data-trail-title>Our whistles — Fall 2026</h1>
+        <p class="trail-count" data-trail-count>12 of 12 Saturdays have a center</p>
+        <ol class="trail-whistle-days" data-whistle-rows></ol>
+        <p class="trail-strip" data-trail-strip>Every Saturday has a whistle. You do not need to hunt one.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="missing-a-whistle" hidden>
+        <h1 data-trail-title>Missing a whistle — Fall 2026</h1>
+        <p class="trail-count" data-trail-count>11 of 12 Saturdays have a center</p>
+        <ol class="trail-hole" data-whistle-hole>
+          <li data-sat="2026-10-11">October 11 · 12U Van Rec · no center</li>
+        </ol>
+        <p class="trail-pin-hint">Pin this in Photos — this is the note the league needs.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow-whistle" hidden>
+        <h1 data-trail-title>Tomorrow — September 27</h1>
+        <div class="trail-tomorrow-whistle">
+          <p data-when-line>12U Van Rec · 10:00 · Mineola Complex · West Lot</p>
+          <p class="trail-center" data-center>Center: Quinn Adler</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>Tomorrow has a whistle.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="do-not-play" hidden>
+        <h1 data-trail-title>Do not play — October 18</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>Tomorrow has no center. Quinn dropped the whistle.</p>
+          <p>12U Van Rec cannot host. Guests stay home.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — the old whistle card is wrong.</p>
+      </article>
+      <article class="trail-card" data-card="already-started" hidden>
+        <h1 data-trail-title>Did someone in your house already start this?</h1>
+        <div class="trail-chips trail-chips-2" role="group" aria-label="Did someone in your house already start this?">
+          <button type="button" class="trail-chip" data-trail-already="yes" aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip" data-trail-already="no" aria-pressed="false">No</button>
+        </div>
+      </article>
+      <article class="trail-card" data-card="their-phone" hidden>
+        <h1 data-trail-title>Their phone</h1>
+        <input
+          class="trail-phone"
+          data-trail-phone-field
+          type="tel"
+          inputmode="numeric"
+          autocomplete="off"
+          autocapitalize="off"
+          spellcheck="false"
+          aria-label="Their phone"
+          maxlength="12"
+        />
+      </article>
+      <article class="trail-card" data-card="your-family" hidden>
+        <h1 data-trail-title>Your family</h1>
+        <div class="trail-filled" data-trail-household>
+          <p>Your 8U · Van only · never before 9:30</p>
+          <p>Your 10U · later in the day · travel ok</p>
+          <p>Bryan coaches both</p>
+        </div>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="no-family-yet" hidden>
+        <h1 data-trail-title>No family yet — Fall 2026</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>We do not see a household at that number.</p>
+          <p>Bryan still needs to start your Saturdays.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — this is the note Bryan needs.</p>
+      </article>
+      <article class="trail-card" data-card="how-many-kids" hidden>
+        <h1 data-trail-title>How many kids play this season?</h1>
+        <div class="trail-chips" role="group" aria-label="How many kids play this season?">
+          <button type="button" class="trail-chip" data-trail-chip="1" aria-pressed="false">1</button>
+          <button type="button" class="trail-chip" data-trail-chip="2" aria-pressed="false">2</button>
+          <button type="button" class="trail-chip" data-trail-chip="3" aria-pressed="false">3</button>
+        </div>
+      </article>
+      <article class="trail-card" data-card="first-kid" hidden>
+        <h1 data-trail-title>First kid</h1>
+        <div class="trail-beat" data-kid-beat="age">
+          <div class="trail-chips trail-chips-ages" role="group" aria-label="Age group">
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="6U" aria-pressed="false">6U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="8U" aria-pressed="false">8U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="10U" aria-pressed="false">10U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="12U" aria-pressed="false">12U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="14U" aria-pressed="false">14U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="16U" aria-pressed="false">16U</button>
+          </div>
+        </div>
+        <div class="trail-beat" data-kid-beat="travel" hidden>
+          <p class="trail-ask">May they travel?</p>
+          <div class="trail-chips trail-chips-2" role="group" aria-label="May they travel?">
+            <button type="button" class="trail-chip" data-kid-travel="yes" aria-pressed="false">Yes</button>
+            <button type="button" class="trail-chip" data-kid-travel="no" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <div class="trail-beat" data-kid-beat="clock" hidden>
+          <p class="trail-ask">Earliest kickoff?</p>
+          <div
+            class="trail-clock"
+            data-kid-clock
+            tabindex="0"
+            role="slider"
+            aria-label="Earliest kickoff"
+            aria-valuemin="480"
+            aria-valuemax="720"
+            aria-valuenow="510"
+            aria-valuetext="8:30"
+          >
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="trail-clock-face" cx="100" cy="100" r="96" />
+              <line class="trail-clock-hand" data-kid-clock-hand x1="100" y1="100" x2="100" y2="36" transform="rotate(255 100 100)" />
+              <circle class="trail-clock-hub" cx="100" cy="100" r="7" />
+            </svg>
+            <p class="trail-clock-readout" data-kid-clock-readout>8:30</p>
+          </div>
+        </div>
+        <p class="trail-summary" data-kid-summary hidden></p>
+      </article>
+      <article class="trail-card" data-card="second-kid" hidden>
+        <h1 data-trail-title>Second kid</h1>
+        <div class="trail-beat" data-kid-beat="age">
+          <div class="trail-chips trail-chips-ages" role="group" aria-label="Age group">
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="6U" aria-pressed="false">6U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="8U" aria-pressed="false">8U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="10U" aria-pressed="false">10U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="12U" aria-pressed="false">12U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="14U" aria-pressed="false">14U</button>
+            <button type="button" class="trail-chip trail-chip-age" data-kid-age="16U" aria-pressed="false">16U</button>
+          </div>
+        </div>
+        <div class="trail-beat" data-kid-beat="travel" hidden>
+          <p class="trail-ask">May they travel?</p>
+          <div class="trail-chips trail-chips-2" role="group" aria-label="May they travel?">
+            <button type="button" class="trail-chip" data-kid-travel="yes" aria-pressed="false">Yes</button>
+            <button type="button" class="trail-chip" data-kid-travel="no" aria-pressed="false">No</button>
+          </div>
+        </div>
+        <div class="trail-beat" data-kid-beat="clock" hidden>
+          <p class="trail-ask">Earliest kickoff?</p>
+          <div
+            class="trail-clock"
+            data-kid-clock
+            tabindex="0"
+            role="slider"
+            aria-label="Earliest kickoff"
+            aria-valuemin="480"
+            aria-valuemax="720"
+            aria-valuenow="510"
+            aria-valuetext="8:30"
+          >
+            <svg viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="trail-clock-face" cx="100" cy="100" r="96" />
+              <line class="trail-clock-hand" data-kid-clock-hand x1="100" y1="100" x2="100" y2="36" transform="rotate(255 100 100)" />
+              <circle class="trail-clock-hub" cx="100" cy="100" r="7" />
+            </svg>
+            <p class="trail-clock-readout" data-kid-clock-readout>8:30</p>
+          </div>
+        </div>
+        <p class="trail-summary" data-kid-summary hidden></p>
+      </article>
+      <article class="trail-card" data-card="do-you-coach" hidden>
+        <h1 data-trail-title>Do you coach either team?</h1>
+        <div class="trail-chips trail-chips-2" role="group" data-coach-group aria-label="Do you coach either team?">
+          <button type="button" class="trail-chip" data-trail-coach="yes" hidden aria-pressed="false">Yes</button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="head" hidden aria-pressed="false">Head coach</button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="assistant" hidden aria-pressed="false">Assistant</button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="no" aria-pressed="false">No</button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="8u" aria-pressed="false">Yes, 8U<span class="trail-chip-sub">Hedgehogs</span></button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="10u" aria-pressed="false">Yes, 10U<span class="trail-chip-sub">Hedgehogs</span></button>
+          <button type="button" class="trail-chip trail-chip-coach" data-trail-coach="both" aria-pressed="false">Yes, both</button>
+        </div>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="our-saturdays" hidden>
+        <h1 data-trail-title>Our Saturdays — Fall 2026</h1>
+        <div class="trail-benches">
+          <div class="trail-bench-head">
+            <h2>8U</h2>
+            <h2>10U</h2>
+          </div>
+          <ol class="trail-sat-days" data-sat-rows></ol>
+        </div>
+        <p class="trail-strip" data-trail-strip>One car. You never stand on two benches at once.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-pin" data-card="your-clipboard" hidden>
+        <h1 data-trail-title>Your clipboard — Fall 2026</h1>
+        <div class="trail-benches" data-one-kid>
+          <div class="trail-bench-head" data-one>
+            <h2>10U</h2>
+          </div>
+          <ol class="trail-sat-days" data-clipboard-rows></ol>
+        </div>
+        <p class="trail-strip" data-trail-strip>One kid. You hold the clipboard. Bryan is still head coach.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not hunt which Saturday is yours.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="cannot-hold-two" hidden>
+        <h1 data-trail-title>Cannot hold two — Fall 2026</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>September 20 · 10U Hedgehogs lists you on the clipboard at 10:00 Field C.</p>
+          <p>The same minute lists you on 8U Hedgehogs Field B.</p>
+          <p>You are the 10U assistant. You have one kid. You cannot hold two clipboards.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — this is the note the league needs.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="does-not-fit" hidden>
+        <h1 data-trail-title>Does not fit — Fall 2026</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>August 23 · 8U Hedgehogs is listed at 8:30. You asked never before 9:30.</p>
+          <p>Moving 8U to 10:00 would put you on Field B and Field C at the same minute.</p>
+          <p>You coach both. One person cannot hold two clipboards.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — this is the note the league needs.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="does-not-stay-van" hidden>
+        <h1 data-trail-title>Does not stay Van — Fall 2026</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>September 27 · 12U Van Rec is listed at Mineola Complex.</p>
+          <p>You asked Van only. Ava does not have a home Saturday that week.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — this is the note the league needs.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow" hidden>
+        <h1 data-trail-title>Tomorrow — September 20</h1>
+        <div class="trail-tomorrow-benches">
+          <section data-side="8u">
+            <h2>8U Hedgehogs</h2>
+            <p class="trail-when">9:30</p>
+            <p>Field B · Lot North</p>
+            <p>vs Hawks</p>
+            <p>Van Complex</p>
+          </section>
+          <section data-side="10u">
+            <h2>10U Hedgehogs</h2>
+            <p class="trail-when">11:30</p>
+            <p>Mineola Complex · West Lot</p>
+            <p>vs Mineola</p>
+            <p data-drive>35 minutes after 8U ends</p>
+          </section>
+        </div>
+        <p class="trail-strip" data-trail-strip>One car. 8U never leaves Van. You stand 8U first.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow-one" hidden>
+        <h1 data-trail-title>Tomorrow — September 27</h1>
+        <div class="trail-tomorrow-one">
+          <p data-kid-line>Ava · 12U Van Rec · 10:00 · Mineola Complex · West Lot</p>
+          <p data-leave-line>35 minutes. Leave Van by 9:00.</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>One kid. One campus. You are not splitting a car.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app in the car.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow-clipboard" hidden>
+        <h1 data-trail-title>Tomorrow — October 11</h1>
+        <div class="trail-tomorrow-one">
+          <p data-kid-line>Ivy · 10U Hedgehogs · 11:30 · Van Complex Field C · Lot East</p>
+          <p data-duty-line>You hold the clipboard. Bryan away.</p>
+        </div>
+        <p class="trail-strip" data-trail-strip>One kid. You stand. Bryan is still head coach.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="tomorrow-passenger" hidden>
+        <h1 data-trail-title>Tomorrow — September 20</h1>
+        <div class="trail-tomorrow-pack">
+          <section data-side="8u">
+            <h2>8U Hedgehogs</h2>
+            <p class="trail-when">9:30</p>
+            <p>Field B · Lot North</p>
+            <p>vs Hawks</p>
+            <p>Van Complex</p>
+          </section>
+          <p class="trail-leave-by" data-leave-by>Leave Lot North by 10:40. 35 minutes to the West Lot.</p>
+          <section data-side="10u">
+            <h2>10U Hedgehogs</h2>
+            <p class="trail-when">11:30</p>
+            <p>Mineola Complex · West Lot</p>
+            <p>vs Mineola</p>
+          </section>
+        </div>
+        <p class="trail-strip" data-trail-strip>One car. Bryan holds 8U, then 10U. You stay with both kids.</p>
+        <p class="trail-pin-hint">Pin this in Photos — you will not need the app at the field.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="do-not-go" hidden>
+        <h1 data-trail-title>Do not go — August 23</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>Tomorrow is washed out. Empty grass.</p>
+          <p data-trail-move>Both benches move to November 21.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — the old Saturday card is wrong.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="do-not-go-one" hidden>
+        <h1 data-trail-title>Do not go — September 27</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>Tomorrow at Mineola is off. Empty grass.</p>
+          <p>Do not leave Van at 9:00.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — the old tomorrow card is wrong.</p>
+      </article>
+      <article class="trail-card trail-card-rust" data-card="do-not-stand" hidden>
+        <h1 data-trail-title>Do not stand — October 11</h1>
+        <div class="trail-clash" data-trail-clash>
+          <p>Tomorrow on Field C is off. Empty grass.</p>
+          <p>Do not hold the clipboard. Bryan is still away.</p>
+        </div>
+        <p class="trail-pin-hint">Pin this in Photos — the old tomorrow card is wrong.</p>
+      </article>
+      <article class="trail-card trail-card-pin trail-card-tomorrow" data-card="rain-check" hidden>
+        <h1 data-trail-title>Rain check — November 21</h1>
+        <div class="trail-tomorrow-benches">
+          <section data-side="8u">
+            <h2>8U Hedgehogs</h2>
+            <p class="trail-when">9:30</p>
+            <p>Field B · Lot North</p>
+            <p>Van Complex</p>
+          </section>
+          <section data-side="10u">
+            <h2>10U Hedgehogs</h2>
+            <p class="trail-when">11:15</p>
+            <p>Field C · Lot East</p>
+            <p>same campus</p>
+          </section>
+        </div>
+        <p class="trail-strip" data-trail-strip>One car. You never stand on two benches at once.</p>
+        <p class="trail-pin-hint">Pin this — this is the Saturday that replaced August 23.</p>
+      </article>
+      <button type="button" class="trail-continue" data-trail-continue>Continue</button>
+      <a class="who-again" href="./" data-who-again>Not this role</a>
+      <div class="local-file" data-local-file>
+        <p>This season stays on this phone.</p>
+        <label class="local-open">Open a season file
+          <input data-input="season" type="file" accept=".sqlite,.db" />
+        </label>
+        <button type="button" class="quiet" data-action="save-season">Save this season</button>
+      </div>
+    </section>
+    <div id="app" data-ui="wizard" hidden>
       <section class="screen wizard" data-screen="wizard" data-wizard-step="drop">
         <header class="top">
           <div>
@@ -21,11 +507,12 @@
             <p class="note" data-note="wizard-browser-only">everything stays in this browser until you save a file</p>
           </div>
           <div class="top-actions">
+            <a class="who-again" href="./" data-who-again>Not this role</a>
             <button type="button" class="quiet" data-action="use-advanced">Advanced workbench</button>
           </div>
         </header>
         <ol class="wiz-rail" data-wizard-rail>
-          <li data-wiz-step="drop" aria-current="step"><span>1</span> Workbook</li>
+          <li data-wiz-step="drop" aria-current="step"><span>1</span> Rosters</li>
           <li data-wiz-step="settings"><span>2</span> Clocks</li>
           <li data-wiz-step="fields"><span>3</span> Fields</li>
           <li data-wiz-step="kids"><span>4</span> Players</li>
@@ -35,25 +522,32 @@
           <li data-wiz-step="done"><span>8</span> Schedule</li>
         </ol>
         <div class="wiz-body">
-          <p class="wiz-lead" data-wizard-lead>Drop the coaching roster. We will read team names, brackets, and coaches — nothing else is invented.</p>
+          <p class="wiz-lead" data-wizard-lead>Drop the team roster PDFs. We will read the team, the coach, and every named kid — nothing else is invented.</p>
           <div class="progress" data-wizard-progress hidden></div>
           <div class="refusal" data-wizard-refusal hidden>
             <h2 data-wizard-refusal-title>This file could not become a season.</h2>
             <p data-wizard-refusal-body></p>
           </div>
           <label class="wiz-drop door" data-wizard-drop data-door="wizard-drop">
-            <strong>Drop the Excel here</strong>
-            <span>A coaching roster is enough. Duplicate rows and empty table padding are skipped.</span>
-            <input data-wizard-input="workbook" type="file" accept=".xlsx,.xls,.csv" />
+            <strong>Drop the team PDFs here</strong>
+            <span>One North Texas roster printout per team. Drop several at once. Excel still works.</span>
+            <input data-wizard-input="workbook" type="file" accept=".pdf,.xlsx,.xls,.csv,application/pdf" multiple />
           </label>
+          <div class="local-file" data-local-file>
+            <p>Coming back? Open the season file from this phone.</p>
+            <label class="local-open">Open a season file
+              <input data-input="season" type="file" accept=".sqlite,.db" />
+            </label>
+            <button type="button" class="quiet" data-action="save-season">Save this season</button>
+          </div>
           <div class="wiz-roster" data-wizard-roster hidden>
             <p class="wiz-summary" data-wizard-summary></p>
             <p class="wiz-dedupe" data-wizard-dedupe hidden></p>
             <div class="wiz-brackets" data-wizard-brackets></div>
             <ul class="wiz-holes" data-wizard-holes hidden></ul>
             <label class="wiz-again">
-              Drop a different workbook
-              <input data-wizard-input="replace" type="file" accept=".xlsx,.xls,.csv" />
+              Add more team PDFs
+              <input data-wizard-input="replace" type="file" accept=".pdf,.xlsx,.xls,.csv,application/pdf" multiple />
             </label>
             <div class="wiz-actions">
               <button type="button" class="wiz-continue" data-wizard-continue data-wizard-next="settings" disabled>
@@ -144,9 +638,15 @@
           </div>
           <div class="wiz-kids" data-wizard-kids hidden data-wizard-kids-saved="no">
             <p class="wiz-ask" data-wizard-kids-ask>Kids on each team?</p>
-            <p class="wiz-fields-copy">This roster has no player lists. We will not invent children. You can schedule without that data, but you have to say so — that choice is saved on the season.</p>
+            <p class="wiz-fields-copy" data-wizard-kids-copy>Drop the official North Texas roster PDFs. Several at once. That is how kids enter — there is no kid-by-kid form.</p>
+            <label class="wiz-drop wiz-kids-drop" data-wizard-kids-drop>
+              <strong data-wizard-kids-drop-title>Drop the official team PDFs</strong>
+              <span data-wizard-kids-drop-hint>North Texas Soccer Association Roster. One file per team. We will not invent children.</span>
+              <input data-wizard-input="rosters" type="file" accept=".pdf,application/pdf" multiple />
+            </label>
             <p class="wiz-live" data-wizard-kids-need></p>
             <p class="wiz-saved" data-wizard-kids-saved-line hidden></p>
+            <ul class="wiz-named" data-wizard-kids-named hidden></ul>
             <ul class="wiz-holes" data-wizard-kids-hollow hidden></ul>
             <div class="wiz-actions">
               <button type="button" class="wiz-back" data-wizard-back="fields">Back to fields</button>
@@ -337,8 +837,8 @@
           </button>
           <label class="door" data-door="drop-workbook">
             <strong>Drop your workbook here</strong>
-            <span>Colored sheets, a coaching roster, a binder dump, or GotSport. Excel stays the editor.</span>
-            <input data-input="workbook" type="file" accept=".xlsx,.xls,.csv" />
+            <span>Team roster PDFs, colored sheets, a coaching roster, a binder dump, or GotSport.</span>
+            <input data-input="workbook" type="file" accept=".pdf,.xlsx,.xls,.csv,application/pdf" multiple />
           </label>
           <label class="door" data-door="open-season">
             <strong>Open a saved season file</strong>

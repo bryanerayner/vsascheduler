@@ -4,7 +4,7 @@ Commissioner workbench for Van Soccer Association.
 
 **Live:** https://bryanerayner.github.io/vsascheduler/
 
-No password. A simple wizard opens on load (drop the coaching roster first). The advanced workbench is a toggle.
+No password. The first screen asks **Who are you and what do you do?** Then a specialized home (parent, coach, assistant, commissioner, photographer, tournament). Open / Save the season file on that first screen. Commissioner then drops team roster PDFs. The advanced workbench is a toggle after that.
 
 The first visit may refresh once so Z3 can run (GitHub Pages does not send COOP/COEP headers; a small service worker adds them).
 
